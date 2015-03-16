@@ -1,0 +1,7 @@
+##HW1.2. Altitude of a satellite (Book Exercise 2.2)
+G=6.67e-11
+M=5.97e24
+R=6371000
+T=float(input("Enter the value of T:"))
+h=((G*M*T**2)/(4*3.1416**2))**(1/3)-R
+print("the altitude is",h,"meters")
