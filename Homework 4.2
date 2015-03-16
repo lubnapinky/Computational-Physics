@@ -1,0 +1,33 @@
+from pylab import plot, show
+from numpy import zeros 
+from math import exp
+import numpy
+def f(t):
+    return exp(t**2)
+    
+N = 1000
+a = 0.0
+b = 3.0
+h = (b-a)/N
+c = 0.0
+d = 0.0
+ptt = zeros(1000)
+pty = zeros(1000)
+
+for k in range (1,N,2):
+    c += f(a+(k*h))
+for k in range (2,N,2):
+    d += f(a+(k*h))
+s = (1/3.0)*h*(f(a)+f(b)+4*c+2*d)
+
+print(s)
+
+t = numpy.arange (0,3,0.1)
+print(f(t))
+ptt[t] = t     
+pty[t] = f(t)
+
+
+plot(ptt,pty)
+show()
+    
