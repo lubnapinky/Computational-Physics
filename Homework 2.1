@@ -1,0 +1,12 @@
+Special Relativity:
+#in the rest frame of an observer on Earth
+x=float(input("Enter the value of x:"))
+v=float(input("Enter the value of v/c:"))
+t_0=x/v
+print("The time to reach the planet for the spaceship is:",t_0,"years")
+
+#as perceived by a passenger on board the ship
+x=float(input("Enter the value of x:"))
+v=float(input("Enter the value of v/c:"))
+t=t_0/(1-v**2)**0.5
+print("The time to reach the planet for the spaceship is:",t,"years")
