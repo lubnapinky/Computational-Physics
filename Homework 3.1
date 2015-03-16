@@ -1,0 +1,11 @@
+Plotting experimental data
+from pylab import show,imshow,gray,colorbar,xlabel,ylabel
+from numpy import loadtxt
+
+data = loadtxt("stm.txt",float)
+imshow(data,origin="lower",extent = [0,600,0,600])
+xlabel("Height of the surface")
+ylabel("Height of the surface")
+gray()
+colorbar()
+show()
