@@ -1,0 +1,42 @@
+import math
+from math import exp
+#(a)
+a=math.exp(-1)
+print('The value of exp(-1) is=',a)
+
+#(b)Simple expansion
+for x in range (0,110,10):
+    e=1.0
+    s=1.0
+    n=1.0
+    while n<100:
+        f=math.factorial(n)
+        s=(x**n)/(f)
+        e=e+s
+        ex=1/e
+        n=n+1
+        
+        
+    print(x,ex)
+
+#(c)Simple expansion
+
+for x in range (0,100,10):
+    e=1.0
+    s=1.0
+    n=1.0
+    while (abs(s)>10e-10):
+        s=s*(x/n)
+        e=e+s
+        ex=1/e
+        n=n+1
+
+    print(x,ex)    
+
+#(d) Simple Inversion
+
+for x in range (0,100,10):
+    e=1/exp(x)
+    print(x,e)
+
+
