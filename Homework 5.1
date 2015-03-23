@@ -6,7 +6,7 @@ from numpy import*
 def f(x):
   return sin(math.sqrt(100*x))**2
 
-N1=10
+N1=20
 a = 0.0
 b = 1.0
 h1=(b-a)/N1          
@@ -19,14 +19,15 @@ for k in range(0,N1):
 I1=float(h1*s)
 print("I1 =",I1)
 
-
+s2 = 0.0
 for n in range(1,10):
     N2 = (2**n)*N1
     h2=(b-a)/N2
-    for k1 in range (1,N,2):
-        s+= f(a + k1*h2)
-        I2=0.5*I1+(h2*s)
+    for k1 in range (1,N2,2):
+        s2+= f(a + k1*h2)
+        I2=0.5*I1+(h2*s2)
+        print "I2=",I2
         e=I2-I1
-    if e > 1e-6:
+    if e < 1e-6:
         print("I2 =",I2," e=",e)  
     else: break
