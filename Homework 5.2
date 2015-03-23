@@ -1,0 +1,26 @@
+from math import* 
+from pylab import*
+from numpy import*
+
+x=[]
+y=[]
+df=[]
+def f(x):
+    return 1+tanh(2*x)
+  
+for x in arange(-2.0,2.0,0.1):
+    h=1e-6
+    df=(f(x+h)-f(x-h))/(2*h)
+    print x,df
+    y.append(df)
+
+ptx = zeros(1000)
+pty = zeros(1000)
+for x in range(-2,2):
+    print(df)
+    ptx[x] = x
+    pty[x] = df
+xlim(-2.0,2.0)
+ylim(0,1.0)
+plot(x,df)
+show()
