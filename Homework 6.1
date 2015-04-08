@@ -1,0 +1,66 @@
+NBi209 = 0
+tau_Tl209 = 2.2*60
+tau_Bi213 = 46*60
+tau_Pb = 3.3*60
+h = 1.0
+p_Tl209 = 1 - 2**(-h/tau_Bi213)
+p_Pb_Tl = 1 - 2**(-h/tau_Tl209)
+p_Pb = 1 - 2**(-h/tau_Bi213)
+p_Bi209 = 1 -2**(-h/tau_Pb)
+tmax = 1000
+
+# List of plot points
+
+tpoints = arange(0.0,tmax,h)
+Bi213points = []
+Tl209points = []
+Pbpoints = []
+Bi209points =[]
+
+#Main loop
+for t in tpoints:
+    Bi213points.append(NBi213)
+    Tl209points.append(NTl209)
+    Pbpoints.append(NPb)
+    Bi209points.append(NBi209)
+    
+    # calculate the number of atoms that decay
+    decay1 = 0
+    for i in range(NBi213):
+        if random()<p_Pb: # decide whether there is decay
+               decay1 += 1 # count how many atoms have decayed
+    NBi213 -= decay1 # substract the decayed atoms from Bi213
+    NPb += decay1    # Add the decayed atoms to lead
+    if random()<p_Pb:
+                decay1 += 1
+    NBi213 -= decay1  
+    NTl209 += decay1 
+    
+    decay3 = 0
+    for i in range(NTl209):
+        if random()<p_Pb_Tl:
+            decay3 += 1
+            
+    NTl209 -= decay1  
+    NPb += decay1       
+    
+    decay2 = 0
+    for i in range(NPb):
+        if random()<p_Bi209:
+            decay2 += 1
+    NPb -= decay2
+    NBi209 += decay2
+        
+       
+    
+
+# Make the graph
+xlim(0,1000)
+ylim(-10,10000)
+plot(tpoints,Bi213points)
+plot(tpoints,Pbpoints,"--")
+plot(tpoints,Tl209points)
+plot(tpoints,Bi209points)
+xlabel("Time")
+ylabel("Number of atoms")
+show()
