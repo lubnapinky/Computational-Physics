@@ -1,0 +1,39 @@
+from math import sin,pi
+from numpy import array,arange
+from pylab import plot,show,xlabel
+
+g = 9.81
+l = 0.1
+theta0 = 179*pi/180
+a = 0.0
+b = 10.0
+N = 100          
+h = (b-a)/N     
+   
+
+def f(r,t):
+    theta = r[0]
+    omega = r[1]
+    ftheta = omega
+    fomega = -(g/l)*sin(theta)
+    return array([ftheta,fomega],float)
+
+tpoints = arange(a,b,h)
+thetapoints = []
+r = array([theta0,0.0],float)
+
+
+for t in tpoints:
+
+    thetapoints.append(r[0])
+    k1 = h*f(r,t)
+    k2 = h*f(r+0.5*k1,t+0.5*h)
+    k3 = h*f(r+0.5*k2,t+0.5*h)
+    k4 = h*f(r+k3,t+h)
+    r += (k1+2*k2+2*k3+k4)/6
+# Plot the results
+plot(tpoints,thetapoints)
+xlabel("t")
+show()
+
+    
